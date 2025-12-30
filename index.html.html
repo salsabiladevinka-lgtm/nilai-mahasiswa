@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Data Nilai Mahasiswa</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#dfe3e6;
+    margin:0;
+}
+.header{
+    padding:30px;
+    font-size:40px;
+    color:#555;
+}
+.identity{
+    padding-left:30px;
+    font-size:16px;
+}
+.container{
+    display:flex;
+    gap:20px;
+    padding:20px 30px;
+}
+.box{
+    background:#dfe8cf;
+    width:50%;
+    padding:20px;
+    border:1px solid #999;
+}
+.title{
+    text-align:center;
+    font-weight:bold;
+}
+label{
+    display:inline-block;
+    width:150px;
+    margin:8px 0;
+}
+input{
+    width:200px;
+    padding:4px;
+}
+button{
+    padding:5px 15px;
+    margin-top:10px;
+}
+.note{
+    font-size:13px;
+    margin-top:15px;
+}
+.output p{
+    margin:8px 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- JUDUL -->
+<div class="header">LATIHAN</div>
+
+<!-- IDENTITAS -->
+<div class="identity">
+    <b>Nama :</b> Devinka Nadya Salsabila <br>
+    <b>NPM :</b> 24120020
+</div>
+
+<!-- ISI -->
+<div class="container">
+
+    <!-- INPUT -->
+    <div class="box">
+        <div class="title">DATA NILAI MAHASISWA</div>
+        <hr>
+
+        <label>Masukan NIM</label>
+        <input type="text" id="nim"><br>
+
+        <label>Nama Mahasiswa</label>
+        <input type="text" id="nama"><br>
+
+        <label>Nilai UTS</label>
+        <input type="number" id="uts"><br>
+
+        <label>Nilai UAS</label>
+        <input type="number" id="uas"><br>
+
+        <label>Nilai Tugas</label>
+        <input type="number" id="tugas"><br>
+
+        <button onclick="proses()">Proses</button>
+        <button onclick="batal()">Batal</button>
+
+        <div class="note">
+            UTS 30% | UAS 40% | TUGAS 30%<br>
+            85–100 = A | 70–84 = B | 60–69 = C | 40–59 = D | &lt;40 = E
+        </div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="box output">
+        <div class="title">DATA NILAI MAHASISWA</div>
+        <hr>
+
+        <p>NIM : <span id="o_nim"></span></p>
+        <p>Nama Mahasiswa : <span id="o_nama"></span></p>
+        <p>Nilai UTS : <span id="o_uts"></span></p>
+        <p>Nilai UAS : <span id="o_uas"></span></p>
+        <p>Nilai Tugas : <span id="o_tugas"></span></p>
+        <p>Index : <span id="o_index"></span></p>
+
+        <hr>
+    </div>
+
+</div>
+
+<script>
+function proses(){
+    let nim = document.getElementById("nim").value;
+    let nama = document.getElementById("nama").value;
+    let uts = parseFloat(document.getElementById("uts").value);
+    let uas = parseFloat(document.getElementById("uas").value);
+    let tugas = parseFloat(document.getElementById("tugas").value);
+
+    let nilai = (uts*0.3) + (uas*0.4) + (tugas*0.3);
+    let index = "";
+
+    if(nilai >= 85) index = "A";
+    else if(nilai >= 70) index = "B";
+    else if(nilai >= 60) index = "C";
+    else if(nilai >= 40) index = "D";
+    else index = "E";
+
+    document.getElementById("o_nim").innerText = nim;
+    document.getElementById("o_nama").innerText = nama;
+    document.getElementById("o_uts").innerText = uts;
+    document.getElementById("o_uas").innerText = uas;
+    document.getElementById("o_tugas").innerText = tugas;
+    document.getElementById("o_index").innerText = index;
+}
+
+function batal(){
+    document.querySelectorAll("input").forEach(x => x.value="");
+    document.querySelectorAll("span").forEach(x => x.innerText="");
+}
+</script>
+
+</body>
+</html>
